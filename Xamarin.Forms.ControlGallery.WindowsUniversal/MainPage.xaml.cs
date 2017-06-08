@@ -49,10 +49,12 @@ namespace Xamarin.Forms.ControlGallery.WindowsUniversal
 			var app = new Controls.App();
 
 			// When the native control gallery loads up, it'll let us know so we can add the nested native controls
-			MessagingCenter.Subscribe<NestedNativeControlGalleryPage>(this, NestedNativeControlGalleryPage.ReadyForNativeControlsMessage, AddNativeControls);
+			MessagingCenter.Subscribe<NestedNativeControlGalleryPage>(
+				this, NestedNativeControlGalleryPage.ReadyForNativeControlsMessage, AddNativeControls);
 
 			// When the native binding gallery loads up, it'll let us know so we can set up the native bindings
-			MessagingCenter.Subscribe<NativeBindingGalleryPage>(this, NativeBindingGalleryPage.ReadyForNativeBindingsMessage, AddNativeBindings);
+			MessagingCenter.Subscribe<NativeBindingGalleryPage>(
+				this, NativeBindingGalleryPage.ReadyForNativeBindingsMessage, AddNativeBindings);
 
 			LoadApplication(app);
 		}
@@ -127,6 +129,30 @@ namespace Xamarin.Forms.ControlGallery.WindowsUniversal
 				}
 			);
 
+			{
+				var stackLayout = new StackLayout()
+				{
+					VerticalOptions = LayoutOptions.Start,
+					HorizontalOptions = LayoutOptions.Center
+				};
+
+				var label = new Label
+				{
+					Text = "Hello World!",
+					VerticalOptions = LayoutOptions.Center,
+					HorizontalOptions = LayoutOptions.Center
+				};
+
+				var bz56843TextBlock = new TextBlock
+				{
+					Text = "Bug 56843"
+				};
+
+				stackLayout.Children.Add(label);
+				stackLayout.Children.Add(bz56843TextBlock);
+
+				sl?.Children.Add(stackLayout);
+			}
 			page.NativeControlsAdded = true;
 		}
 
